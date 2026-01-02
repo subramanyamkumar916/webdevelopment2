@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - MamaCare</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dashboard-page">
+    <!-- Navigation Bar -->
+    <nav class="navbar dashboard-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">👶</span>
+                <span class="logo-text">MamaCare</span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#patient-details" class="nav-link">Profile</a></li>
+                <li><a href="#health-monitoring" class="nav-link">Health</a></li>
+                <li><a href="#fitness-tracker" class="nav-link">Fitness</a></li>
+                <li><a href="#store" class="nav-link">Store</a></li>
+                <li><a href="#community" class="nav-link">Community</a></li>
+                <li class="cart-icon-wrapper">
+                    <a href="#store" class="nav-link cart-link">
+                        🛒 <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </li>
+                <li><a href="#" class="nav-link" id="logoutBtn">Logout</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <main class="dashboard-main">
+        <!-- Patient Details Section -->
+        <section id="patient-details" class="dashboard-section">
+            <div class="container">
+                <h2 class="section-title">👤 Patient Details</h2>
+                <div class="patient-details-container">
+                    <div class="patient-form-card">
+                        <h3>Enter Your Details</h3>
+                        <form id="patientForm" class="patient-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="motherName">Mother's Name</label>
+                                    <input type="text" id="motherName" placeholder="Enter mother's name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="motherAge">Mother's Age</label>
+                                    <input type="number" id="motherAge" placeholder="Age" min="18" max="50" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="trimester">Trimester</label>
+                                    <select id="trimester" required>
+                                        <option value="">Select trimester</option>
+                                        <option value="1">First Trimester (1-12 weeks)</option>
+                                        <option value="2">Second Trimester (13-27 weeks)</option>
+                                        <option value="3">Third Trimester (28-40 weeks)</option>
+                                        <option value="postpartum">Postpartum</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="babyName">Baby's Name</label>
+                                    <input type="text" id="babyName" placeholder="Enter baby's name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="babyAge">Baby's Age (if born)</label>
+                                <input type="text" id="babyAge" placeholder="e.g., 3 months">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Details</button>
+                        </form>
+                    </div>
+                    <div class="patient-profile-card" id="patientProfileCard">
+                        <div class="profile-header">
+                            <div class="profile-avatar">👩</div>
+                            <h3 id="profileMotherName">Not Set</h3>
+                        </div>
+                        <div class="profile-details">
+                            <div class="profile-item">
+                                <span class="profile-label">Age:</span>
+                                <span class="profile-value" id="profileMotherAge">-</span>
+                            </div>
+                            <div class="profile-item">
+                                <span class="profile-label">Trimester:</span>
+                                <span class="profile-value" id="profileTrimester">-</span>
+                            </div>
+                            <div class="profile-item">
+                                <span class="profile-label">Baby's Name:</span>
+                                <span class="profile-value" id="profileBabyName">-</span>
+                            </div>
+                            <div class="profile-item">
+                                <span class="profile-label">Baby's Age:</span>
+                                <span class="profile-value" id="profileBabyAge">-</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary" id="editProfileBtn">Edit Profile</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Healthcare Monitoring Section -->
+        <section id="health-monitoring" class="dashboard-section">
+            <div class="container">
+                <h2 class="section-title">📊 Healthcare Monitoring</h2>
+                <div class="monitoring-container">
+                    <div class="vitals-form-card">
+                        <h3>Mother's Vitals</h3>
+                        <form id="motherVitalsForm" class="vitals-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="motherBP">Blood Pressure (mmHg)</label>
+                                    <input type="text" id="motherBP" placeholder="e.g., 120/80" pattern="\d{2,3}/\d{2,3}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="motherSugar">Blood Sugar (mg/dL)</label>
+                                    <input type="number" id="motherSugar" placeholder="e.g., 90" min="0">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="motherWeight">Weight (kg)</label>
+                                    <input type="number" id="motherWeight" placeholder="e.g., 65" min="0" step="0.1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="motherMood">Mood</label>
+                                    <select id="motherMood">
+                                        <option value="">Select mood</option>
+                                        <option value="happy">😊 Happy</option>
+                                        <option value="calm">😌 Calm</option>
+                                        <option value="tired">😴 Tired</option>
+                                        <option value="anxious">😟 Anxious</option>
+                                        <option value="energetic">⚡ Energetic</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Vitals</button>
+                        </form>
+                    </div>
+                    <div class="vitals-form-card">
+                        <h3>Baby's Vitals</h3>
+                        <form id="babyVitalsForm" class="vitals-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="babyWeight">Weight (kg)</label>
+                                    <input type="number" id="babyWeight" placeholder="e.g., 3.5" min="0" step="0.1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="babyHeight">Height (cm)</label>
+                                    <input type="number" id="babyHeight" placeholder="e.g., 50" min="0" step="0.1">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="babyMood">Baby's Mood</label>
+                                <select id="babyMood">
+                                    <option value="">Select mood</option>
+                                    <option value="happy">😊 Happy</option>
+                                    <option value="sleepy">😴 Sleepy</option>
+                                    <option value="crying">😢 Crying</option>
+                                    <option value="playful">😄 Playful</option>
+                                    <option value="calm">😌 Calm</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Vitals</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="vitals-status-container" id="vitalsStatusContainer">
+                    <!-- Vitals status cards will be dynamically generated -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Fitness Tracker Section -->
+        <section id="fitness-tracker" class="dashboard-section">
+            <div class="container">
+                <h2 class="section-title">🏃 Fitness Tracker</h2>
+                <div class="fitness-container">
+                    <div class="fitness-card">
+                        <h3>Pregnancy Progress</h3>
+                        <div class="week-selector">
+                            <label for="pregnancyWeek">Select Week:</label>
+                            <input type="range" id="pregnancyWeek" min="1" max="40" value="1">
+                            <div class="week-display">
+                                <span>Week <span id="currentWeek">1</span> of 40</span>
+                            </div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <div class="progress-percentage" id="progressPercentage">2.5%</div>
+                        </div>
+                        <div class="baby-size-display" id="babySizeDisplay">
+                            <div class="baby-size-icon">🌱</div>
+                            <div class="baby-size-info">
+                                <h4>Baby Size</h4>
+                                <p class="baby-size-name">Poppy Seed</p>
+                                <p class="baby-size-description">Your baby is as tiny as a poppy seed!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Garbhasamskara Section -->
+        <section id="garbhasamskara" class="dashboard-section">
+            <div class="container">
+                <h2 class="section-title">🧘 Garbhasamskara</h2>
+                <div class="garbhasamskara-container">
+                    <div class="affirmations-card">
+                        <h3>Daily Affirmations</h3>
+                        <div class="affirmation-display" id="affirmationDisplay">
+                            <p class="affirmation-text">I am strong, healthy, and capable of bringing new life into this world.</p>
+                        </div>
+                        <button class="btn btn-secondary" id="nextAffirmationBtn">Next Affirmation</button>
+                    </div>
+                    <div class="mantras-card">
+                        <h3>Mantras</h3>
+                        <div class="mantras-list">
+                            <div class="mantra-item">
+                                <p class="mantra-text">"Om Shanti Shanti Shanti"</p>
+                                <p class="mantra-meaning">Peace, Peace, Peace</p>
+                            </div>
+                            <div class="mantra-item">
+                                <p class="mantra-text">"Om Namah Shivaya"</p>
+                                <p class="mantra-meaning">I bow to the divine within</p>
+                            </div>
+                            <div class="mantra-item">
+                                <p class="mantra-text">"Lokah Samastah Sukhino Bhavantu"</p>
+                                <p class="mantra-meaning">May all beings be happy and free</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="breathing-card">
+                        <h3>Breathing Exercise</h3>
+                        <div class="breathing-animation" id="breathingAnimation">
+                            <div class="breathing-circle" id="breathingCircle">
+                                <span>Breathe</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" id="startBreathingBtn">Start Breathing</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Music Section -->
+        <section id="music" class="dashboard-section">
+            <div class="container">
+                <h2 class="section-title">🎵 Pleasant Music</h2>
+                <div class="music-container">
+                    <div class="music-player-card">
+                        <div class="music-player">
+                            <div class="music-info">
+                                <h3 id="currentTrack">Relaxing Lullaby</h3>
+                                <p class="music-artist">Soothing Sounds</p>
+                            </div>
+                            <div class="music-controls">
+                                <button class="music-btn" id="prevTrackBtn">⏮️</button>
+                                <button class="music-btn play-btn" id="playPauseBtn">▶️</button>
+                                <button class="music-btn" id="nextTrackBtn">⏭️</button>
+                            </div>
+                            <div class="music-progress">
+                                <input type="range" id="musicProgress" min="0" max="100" value="0">
+                                <div class="music-time">
+                                    <span id="currentTime">0:00</span>
+                                    <span id="totalTime">3:45</span>
+                                </div>
+                            </div>
+                            <div class="volume-control">
+                                <span>🔊</span>
+                                <input type="range" id="volumeControl" min="0" max="100" value="50">
+                                <span id="volumeValue">50%</span>
+                            </div>
+                        </div>
+                        <div class="track-list">
+                            <h4>Playlist</h4>
+                            <div class="track-item active" data-track="1">
+                                <span>🎵</span>
+                                <span>Relaxing Lullaby</span>
+                            </div>
+                            <div class="track-item" data-track="2">
+                                <span>🎵</span>
+                                <span>Nature Sounds</span>
+                            </div>
+                            <div class="track-item" data-track="3">
+                                <span>🎵</span>
+                                <span>Meditation Music</span>
+                            </div>
+                            <div class="track-item" data-track="4">
+                                <span>🎵</span>
+                                <span>Piano Melody</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Doctor Consultation Section -->
+        <section id="doctor-consultation" class="dashboard-section">
+            <div class="container">
+                <h2 class="section-title">👨‍⚕️ Doctor Consultation</h2>
+                <div class="doctor-filter">
+                    <label for="specialtyFilter">Filter by Specialty:</label>
+                    <select id="specialtyFilter">
+                        <option value="all">All Specialties</option>
+                        <option value="gynecologist">Gynecologist</option>
+                        <option value="pediatrician">Pediatrician</option>
+                        <option value="nutritionist">Nutritionist</option>
+                        <option value="psychologist">Psychologist</option>
+                    </select>
+                </div>
+                <div class="doctors-grid" id="doctorsGrid">
+                    <!-- Doctors will be dynamically generated -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Nearby Hospitals Section -->
+        <section id="hospitals" class="dashboard-section">
+            <div class="container">
+                <h2 class="section-title">🏥 Nearby Hospitals</h2>
+                <div class="hospital-filter">
+                    <label for="cityFilter">Filter by City:</label>
+                    <select id="cityFilter">
+                        <option value="all">All Cities</option>
+                        <option value="mumbai">Mumbai</option>
+                        <option value="delhi">Delhi</option>
+                        <option value="bangalore">Bangalore</option>
+                        <option value="hyderabad">Hyderabad</option>
+                        <option value="chennai">Chennai</option>
+                    </select>
+                </div>
+                <div class="hospitals-grid" id="hospitalsGrid">
+                    <!-- Hospitals will be dynamically generated -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Store Section -->
+        <section id="store" class="dashboard-section">
+            <div class="container">
+                <h2 class="section-title">🛍️ Baby & Mother Store</h2>
+                <div class="store-tabs">
+                    <button class="store-tab active" data-category="baby">Baby Products</button>
+                    <button class="store-tab" data-category="mother">Pregnancy Care</button>
+                </div>
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be dynamically generated -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section id="community" class="dashboard-section">
+            <div class="container">
+                <h2 class="section-title">💬 Live Community</h2>
+                <div class="community-container">
+                    <div class="post-form-card">
+                        <h3>Share Your Thoughts</h3>
+                        <form id="postForm" class="post-form">
+                            <textarea id="postContent" placeholder="What's on your mind?" rows="4" required></textarea>
+                            <button type="submit" class="btn btn-primary">Post</button>
+                        </form>
+                    </div>
+                    <div class="community-feed" id="communityFeed">
+                        <!-- Posts will be dynamically generated -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Daily Tips Section -->
+        <section id="daily-tips" class="dashboard-section">
+            <div class="container">
+                <h2 class="section-title">💡 Daily Tips</h2>
+                <div class="tips-container">
+                    <div class="tips-card">
+                        <div class="tips-category">
+                            <span class="tips-icon">🤰</span>
+                            <h3>Pregnancy Tips</h3>
+                        </div>
+                        <div class="tip-display" id="pregnancyTipDisplay">
+                            <p class="tip-text">Stay hydrated by drinking at least 8-10 glasses of water daily.</p>
+                        </div>
+                    </div>
+                    <div class="tips-card">
+                        <div class="tips-category">
+                            <span class="tips-icon">👶</span>
+                            <h3>Baby Care Tips</h3>
+                        </div>
+                        <div class="tip-display" id="babyTipDisplay">
+                            <p class="tip-text">Ensure your baby gets 14-17 hours of sleep per day for healthy development.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating Chatbot -->
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-toggle" id="chatbotToggle">
+            <span>💬</span>
+        </div>
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <h3>Healthcare Assistant</h3>
+                <button class="chatbot-close" id="chatbotClose">✕</button>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="chatbot-message bot-message">
+                    <p>Hello! I'm here to help with your pregnancy and baby care questions. How can I assist you today? 😊</p>
+                </div>
+            </div>
+            <div class="chatbot-typing" id="chatbotTyping" style="display: none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Type your message...">
+                <button id="chatbotSendBtn">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="bottom-nav" id="bottomNav">
+        <a href="#patient-details" class="bottom-nav-item">
+            <span>👤</span>
+            <span>Profile</span>
+        </a>
+        <a href="#health-monitoring" class="bottom-nav-item">
+            <span>📊</span>
+            <span>Health</span>
+        </a>
+        <a href="#fitness-tracker" class="bottom-nav-item">
+            <span>🏃</span>
+            <span>Fitness</span>
+        </a>
+        <a href="#store" class="bottom-nav-item">
+            <span>🛍️</span>
+            <span>Store</span>
+        </a>
+        <a href="#community" class="bottom-nav-item">
+            <span>💬</span>
+            <span>Community</span>
+        </a>
+    </nav>
+
+    <!-- Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href !== '#logoutBtn') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        if (navMenu) {
+                            navMenu.classList.remove('active');
+                            hamburger.classList.remove('active');
+                        }
+                    }
+                }
+            });
+        });
+
+        // Logout functionality
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (confirm('Are you sure you want to logout?')) {
+                    localStorage.removeItem('currentUser');
+                    window.location.href = 'index.html';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
